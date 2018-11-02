@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import Kon from '../Figury/Kon/Kon';
 import './Plansza.css';
 import PojedynczePole from './PojedynczePole/PojedynczePole';
@@ -7,6 +9,7 @@ interface IProps {
   pozycjaKonia: number[];
 }
 
+@DragDropContext(HTML5Backend)
 class Plansza extends React.Component<IProps> {
   public render() {
     return (
@@ -46,10 +49,15 @@ class Plansza extends React.Component<IProps> {
   private narysujPole = (numerPola: number) => {
     const x = Math.floor(numerPola / 8)
     const y = numerPola % 8;
-    const kolor = (x + y) % 2 ? 'czarne' : 'biale';
+    return <PojedynczePole x={x} y={y} key={numerPola}>{this.narysujKonia(x, y)}</PojedynczePole>
+  }
+
+  private narysujKonia = (x: number, y:number) => {
     const [konX, konY] = this.props.pozycjaKonia;
-    const jestKon = x === konX && y === konY ? <Kon/> : null;
-    return <PojedynczePole kolor={kolor}>{jestKon}</PojedynczePole>
+    if (x === konX && y === konY) {
+        return <Kon/>;
+    }
+    return null;
   }
 
   private narysujPola = (liczbaPol: number) => {
