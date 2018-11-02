@@ -1,0 +1,12 @@
+.pole {
+    flex-basis: 12.5%;
+    height: 12.5%;
+}
+
+.biale {
+    background-color:white;
+}
+
+.czarne {
+    background-color:black;
+}
