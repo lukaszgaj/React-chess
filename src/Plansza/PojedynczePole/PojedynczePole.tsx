@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Kon from '../../Figury/Kon/Kon';
 import './PojedynczePole.css';
 
 interface IProps {
@@ -12,7 +13,7 @@ class PojedynczePole extends React.Component<IProps>{
     
   public render() {
     return (
-      <div className={this.klasa}/>
+      <div className={this.klasa}>      <Kon/></div>
     );
   }
 }

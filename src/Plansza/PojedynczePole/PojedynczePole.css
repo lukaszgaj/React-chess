@@ -1,6 +1,10 @@
 .pole {
     flex-basis: 12.5%;
     height: 12.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
 }
 
 .biale {
