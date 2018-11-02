@@ -4,13 +4,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 4em;
+    font-size: 4rem;
+    color: white;
 }
 
 .biale {
-    background-color:white;
+    background-color:red;
 }
 
 .czarne {
-    background-color:black;
+    background-color:yellow;
 }

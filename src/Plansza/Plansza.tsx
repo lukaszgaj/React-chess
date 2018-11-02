@@ -1,8 +1,13 @@
 import * as React from 'react';
+import Kon from '../Figury/Kon/Kon';
 import './Plansza.css';
 import PojedynczePole from './PojedynczePole/PojedynczePole';
 
-class Plansza extends React.Component {
+interface IProps {
+  pozycjaKonia: number[];
+}
+
+class Plansza extends React.Component<IProps> {
   public render() {
     return (
       <div className="plansza">
@@ -30,7 +35,7 @@ class Plansza extends React.Component {
               <div className="literka">H</div>
             </div>
             <div className="pola">
-              {this.narysujPlansze()}
+              {this.narysujPola(64)}
             </div>
           </div>
         </div>
@@ -38,14 +43,21 @@ class Plansza extends React.Component {
     );
   }
 
-  private narysujPlansze = () => {
-    const plansza = [];
-    for (let i = 8; i > 0; i--) {
-      for (let j = 1; j < 9; j++) {
-        plansza.push(<PojedynczePole name={String.fromCharCode(64 + j) + i.toString()} kolor={i % 2 === 0 ? (64 + j) % 2 === 0 ? 'czarne' : 'biale' : (64 + j) % 2 === 0 ? 'biale' : 'czarne'} />);
-      }
+  private narysujPole = (numerPola: number) => {
+    const x = Math.floor(numerPola / 8)
+    const y = numerPola % 8;
+    const kolor = (x + y) % 2 ? 'czarne' : 'biale';
+    const [konX, konY] = this.props.pozycjaKonia;
+    const jestKon = x === konX && y === konY ? <Kon/> : null;
+    return <PojedynczePole kolor={kolor}>{jestKon}</PojedynczePole>
+  }
+
+  private narysujPola = (liczbaPol: number) => {
+    const pola = [];
+    for (let i = 0; i < liczbaPol; i++) {
+      pola.push(this.narysujPole(i));
     }
-    return plansza;
+    return pola;
   }
 
 }

@@ -5,7 +5,7 @@ import Plansza from './Plansza/Plansza';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <Plansza />,
+  <Plansza pozycjaKonia={[7,4]}/>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
